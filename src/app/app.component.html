@@ -1,0 +1,40 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}!
+    </h1>
+</div>
+<div style="text-align:center">
+    <h1>
+        Multiple Select
+    </h1>
+</div>
+<div class="form-group" style="text-align:center">
+    <div class="col-md-12">
+        <div [formGroup]= "formGroup1">
+            <mat-form-field class="col-md-12">
+                <mat-select multiple class="block" placeholder="Angular Version" [formControl]="formControl1"
+                    formControlName="multiSelect" ngDefaultControl (selectionChange)="changeEve($event, formGroup1, 'formGroup1')" 
+                    (openedChange)="openedChange($event, formGroup1, 'formGroup1')">
+                    <div class="row" style="padding-top: 10px; text-align:center;">
+                        <button mat-raised-button class="mat-primary fill text-xl" (click)="selectAll(formGroup1, 'formGroup1', itemList)">
+                            Select All
+                        </button>
+                        <button mat-raised-button class="mat-accent fill text-xl" (click)="deselectAll(formGroup1, 'formGroup1')">
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="data-filter-wrapper active" style="padding-top: 10px; text-align:center;">
+                        <input class='data-filter' formControlName="searchInput" (focus)="triggerOpen(formGroup1, 'formGroup1')" placeholder='Search Item...' 
+                            (keyup)="filter($event, formGroup1, 'formGroup1')" [(ngModel)]="searchModel" matInput type="text">
+                            <i class="zmdi zmdi-search search filter-icons"></i>
+                    </div>
+                    <mat-option *ngFor="let item of bufferItemList"  [value]="item.id">
+                        {{ item.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
